@@ -538,10 +538,12 @@ parallel.simulation <- function(parametres.fixes,
   temps_tot <- as.numeric(difftime(time1 = fin_tot, time2 = debut_tot, units = "secs"))
   simul_max <- max(list_temps)
   simul_moy <- mean(list_temps)
+  gain <- (1-temps_tot/(nr*repetition*simul_moy))*100
   cat('\nNombre de simulation :',nr*repetition,'\n')
   cat("Temps moyen par simulation :",.describe_time(simul_moy),'\n')
   cat("Temps de la simulation la plus longue :",.describe_time(simul_max),'\n')
-  cat("Temps total :",.describe_time(temps_tot),'\n\n')
+  cat("Temps total :",.describe_time(temps_tot),'\n')
+  cat("Gain parallelisation :",round(gain,1),'%\n\n')
   return(cbind(data_init,data_res))
 }
 
