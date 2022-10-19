@@ -266,7 +266,7 @@ multi.simulation <- function(parametres.fixes,
                              ref = "Ninf",
                              temps_ref = 1000){
   debut_tot <- Sys.time()
-  cat('Working ...\nCould take a while\n\n\n\n')
+  cat('Working ...\nCould take a while\n')
   var_names <- c("set_parametre","set_densite_dep",
                  "nb_couple_init","quantite_introduite",
                  "nombre_introduction","male_ratio","mated_ratio",
@@ -375,6 +375,7 @@ multi.simulation <- function(parametres.fixes,
                         summarise_vec = F,
                         temps_max = temps_max)
       fin_simul <- Sys.time()
+      cat("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProgress ...",round(((i-1)*repetition+j)/(nr*repetition)*100,2),"%")
       list_temps[[(i-1)*repetition+j]] <- as.numeric(difftime(time1 = fin_simul, time2 = debut_simul, units = "secs"))
       if(check){
         pop$plot(description=T)
@@ -387,6 +388,7 @@ multi.simulation <- function(parametres.fixes,
   temps_tot <- as.numeric(difftime(time1 = fin_tot, time2 = debut_tot, units = "secs"))
   simul_max <- max(list_temps)
   simul_moy <- mean(list_temps)
+  cat("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWork Done ...")
   cat('\nNombre de simulation :',nr*repetition,'\n')
   cat("Temps moyen par simulation :",.describe_time(simul_moy),'\n')
   cat("Temps de la simulation la plus longue :",.describe_time(simul_max),'\n')
@@ -414,7 +416,7 @@ parallel.simulation <- function(parametres.fixes,
                                 ref = "Ninf",
                                 temps_ref = 1000){
   debut_tot <- Sys.time()
-  cat('Working ...\nCould take a while\n\n\n\n')
+  cat('Working ...\nCould take a while\n')
   var_names <- c("set_parametre","set_densite_dep",
                  "nb_couple_init","quantite_introduite",
                  "nombre_introduction","male_ratio","mated_ratio",
@@ -528,7 +530,7 @@ parallel.simulation <- function(parametres.fixes,
     time <- as.numeric(difftime(time1 = fin_simul, time2 = debut_simul, units = "secs"))
     ## Remplie le tableau de sortie
     decription <- pop$description(forced = is.ref)
-    cat("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProgress ...",((i-1)*repetition+j)/(nr*repetition)*100,"%")
+    cat("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProgress ...",round(((i-1)*repetition+j)/(nr*repetition)*100,2),"%")
     return(cbind(decription,time=time))
   }
   ### Fermeture du Cluster
