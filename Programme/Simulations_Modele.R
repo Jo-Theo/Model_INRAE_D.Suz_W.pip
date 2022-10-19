@@ -266,6 +266,7 @@ multi.simulation <- function(parametres.fixes,
                              ref = "Ninf",
                              temps_ref = 1000){
   debut_tot <- Sys.time()
+  cat('Working ...\nCould take a while')
   var_names <- c("set_parametre","set_densite_dep",
                  "nb_couple_init","quantite_introduite",
                  "nombre_introduction","male_ratio","mated_ratio",
@@ -413,6 +414,7 @@ parallel.simulation <- function(parametres.fixes,
                                 ref = "Ninf",
                                 temps_ref = 1000){
   debut_tot <- Sys.time()
+  cat('Working ...\nCould take a while')
   var_names <- c("set_parametre","set_densite_dep",
                  "nb_couple_init","quantite_introduite",
                  "nombre_introduction","male_ratio","mated_ratio",
