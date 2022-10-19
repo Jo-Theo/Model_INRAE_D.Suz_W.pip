@@ -266,7 +266,7 @@ multi.simulation <- function(parametres.fixes,
                              ref = "Ninf",
                              temps_ref = 1000){
   debut_tot <- Sys.time()
-  cat('Working ...\nCould take a while')
+  cat('Working ...\nCould take a while\n\n\n\n')
   var_names <- c("set_parametre","set_densite_dep",
                  "nb_couple_init","quantite_introduite",
                  "nombre_introduction","male_ratio","mated_ratio",
@@ -414,7 +414,7 @@ parallel.simulation <- function(parametres.fixes,
                                 ref = "Ninf",
                                 temps_ref = 1000){
   debut_tot <- Sys.time()
-  cat('Working ...\nCould take a while')
+  cat('Working ...\nCould take a while\n\n\n\n')
   var_names <- c("set_parametre","set_densite_dep",
                  "nb_couple_init","quantite_introduite",
                  "nombre_introduction","male_ratio","mated_ratio",
@@ -500,7 +500,7 @@ parallel.simulation <- function(parametres.fixes,
   
   ### Creation du cluster local
   Ncpus <- detectCores() - 1
-  cl <- makeCluster(Ncpus)
+  cl <- makeCluster(Ncpus,outfile="")
   envir_util <- c(ls(envir=globalenv(),all.names=T),"rollmean")
   clusterExport(cl,envir_util)
   registerDoParallel(cl)
@@ -528,6 +528,7 @@ parallel.simulation <- function(parametres.fixes,
     time <- as.numeric(difftime(time1 = fin_simul, time2 = debut_simul, units = "secs"))
     ## Remplie le tableau de sortie
     decription <- pop$description(forced = is.ref)
+    cat("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProgress ...",((i-1)*repetition+j)/(nr*repetition)*100,"%")
     return(cbind(decription,time=time))
   }
   ### Fermeture du Cluster
@@ -541,6 +542,7 @@ parallel.simulation <- function(parametres.fixes,
   simul_max <- max(list_temps)
   simul_moy <- mean(list_temps)
   gain <- (1-temps_tot/(nr*repetition*simul_moy))*100
+  cat("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWork Done ...")
   cat('\nNombre de simulation :',nr*repetition,'\n')
   cat("Temps moyen par simulation :",.describe_time(simul_moy),'\n')
   cat("Temps de la simulation la plus longue :",.describe_time(simul_max),'\n')
